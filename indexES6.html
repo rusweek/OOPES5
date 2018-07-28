@@ -24,15 +24,15 @@
 
     class  WatchAll{
         constructor (obj){
-        this.obj = obj;
-        let objForArray = this.obj;
-        let arrayForObj = [];
-        
-        Object.keys(objForArray).forEach(key => arrayForObj.push(objForArray[key]));
-        
-        this.name = arrayForObj[0];
-        this.lastName = arrayForObj[1];
-        this.age = arrayForObj[2];
+            this.obj = obj;
+            let objForArray = this.obj;
+            let arrayForObj = [];
+            
+            Object.keys(objForArray).forEach(key => arrayForObj.push(objForArray[key]));
+            
+            this.name = arrayForObj[0];
+            this.lastName = arrayForObj[1];
+            this.age = arrayForObj[2];
         };
         
         setName(name){
@@ -56,7 +56,37 @@
 
     let man1FI = new WatchAll(man1);
 
-    console.log(man1FI.getAllInfo())
+    console.log(man1FI.getAllInfo());
+
+    class WatchAllModFist extends WatchAll{
+
+        constructor(obj){
+            super(obj)
+            
+        };
+        setName(name){
+            super.setName(name)
+            console.log('set new name')
+        };
+
+        getAllInfo(){
+            console.log('changed info')
+            return super.getAllInfo()
+        };
+
+
+    };
+
+    let man2FI = new WatchAllModFist(man2);
+
+    console.log(man2FI.getAllInfo());
+    man2FI.setName('Summer');
+    console.log(man2FI.getAllInfo());
+
+
+
+
+
 
    
     
