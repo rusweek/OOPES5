@@ -16,52 +16,76 @@
 
     };
 
-    Calc.prototype.sum = function(args){
-        let summ = 0;
+    Calc.prototype.sum = function(){
         let length = arguments.length;
         for(let i = 0; i<length; i++){
-            console.log(arguments[i])
-            summ +=arguments[i];
+            this.num +=arguments[i];
         };
-        return summ + this.num;
+        return  this.num;
     };
 
-    Calc.prototype.dif = function(args){
-        let diff = 0;
+    Calc.prototype.dif = function(){
         let length = arguments.length;
         for (let i = 0; i < length; i++) {
-            diff +=arguments[i];
+            this.num -=arguments[i];
             
         };
         return this.num - diff;
     };
 
-    Calc.prototype.div = function(args){
+    Calc.prototype.div = function(){
         let length = arguments.length;
         
         for (let i = 0; i < length; i++) {
-           this.num = this.num/arguments[i];
+           this.num /= arguments[i];
             
         }
         return this.num;
     };
 
-    Calc.prototype.mul = function(args){
+    Calc.prototype.mul = function(){
         let length = arguments.length;
 
         for (let i = 0; i < length; i++) {
             
-            this.num = this.num * arguments[i];
+            this.num *=  arguments[i];
             
         };
         return this.num;
     };
     
-    let s = new Calc(100);
+    //let s = new Calc(100);
     //console.log(s.sum(1,2,3));
     //console.log(s.dif(10,30));
     //console.log(s.div(10,2));
-    console.log(s.mul(2,2));
+    //console.log(s.mul(2,2));
+
+    
+    //SqlCalc.prototype = Object.create(Calc.prototype);
+        
+    function inherit(child, parent){
+        child.prototype = Object.create(parent.prototype);
+        child.prototype.parent = parent;
+    };
+
+    inherit(SqlCalc, Calc);
+    
+    function SqlCalc(num){
+        Calc.apply(this, arguments);
+    };
+
+   
+
+    SqlCalc.prototype.sum = function(){
+        return Calc.prototype.sum.apply(this, arguments);
+        
+    };
+
+
+
+    let s2  = new SqlCalc(100);
+    let v = s2.sum(1,2,3);
+    console.log(v);
 
 </script>
 </html>
