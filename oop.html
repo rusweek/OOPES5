@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OOP</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let man1 = {
+        name: 'Joen',
+        lastName: 'McCain',
+        age: 26
+    };
+
+    let man2 = {
+        name: 'Lindy',
+        lastName: 'Smith',
+        age: 31
+    };
+
+    function WatchAll(obj){
+        this.obj = obj;
+        let objForArray = this.obj;
+        let arrayForObj = [];
+        
+        Object.keys(objForArray).forEach(key => arrayForObj.push(objForArray[key]));
+        
+        this.name = arrayForObj[0];
+        this.lastName = arrayForObj[1];
+        this.age = arrayForObj[2];
+    };
+
+    WatchAll.prototype.setName = function(name){
+        this.name = name;
+    };
+    WatchAll.prototype.setLastName = function(lastName){
+        this.lastName = lastName;
+    };
+
+    WatchAll.prototype.setAge = function(age){
+        this.age = age;
+    }
+    WatchAll.prototype.getAllInfo = function(){
+        
+        let AllInfo = `Имя ${this.name} Фамилия ${this.lastName} Возрвст ${this.age}`;
+        return AllInfo;
+    }
+
+    //let men1FI = new WatchAll(man1);
+    //console.log(men1FI.getAllInfo());
+    //men1FI.setName('Sergey');
+    //console.log(men1FI.getAllInfo());
+
+    function inherit(child, parent){
+        child.prototype = Object.create(parent.prototype);
+        child.prototype.constructor = child;
+            /*function WatchAllModFist(obj){
+            WatchAll.call(this, obj);
+            };*/
+
+
+
+        child.prototype.parent = parent;
+
+            /*function WatchAll(obj){
+            this.obj = obj;
+            let objForArray = this.obj;
+            let arrayForObj = [];
+            
+            Object.keys(objForArray).forEach(key => arrayForObj.push(objForArray[key]));
+            
+            this.name = arrayForObj[0];
+            this.lastName = arrayForObj[1];
+            this.age = arrayForObj[2];
+            };
+            */
+       
+    }
+
+    function WatchAllModFist(obj){
+        WatchAll.call(this, obj);
+    };
+
+    inherit(WatchAllModFist, WatchAll);
+
+    WatchAllModFist.prototype.setName = function(name){
+        this.parent.prototype.setName.call(this, name);
+        //WatchAll.prototype.setName.call(this, name); вариант проще.
+        
+        console.log('set new name');
+    }
+
+    WatchAllModFist.prototype.getAllInfo = function(){
+        console.log('set new proto');
+        //return WatchAll.prototype.setName.getAllInfo(this); вариант проще.
+        return this.parent.prototype.getAllInfo.call(this);
+        
+        
+        
+    }
+
+    let men2FI = new WatchAllModFist(man2);
+    
+    
+    
+    
+    console.log(men2FI.getAllInfo());
+   
+    men2FI.setName('Didi');
+    console.log(men2FI.getAllInfo());
+
+    
+</script>
+</html>
