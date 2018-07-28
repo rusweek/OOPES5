@@ -23,7 +23,7 @@
     };
 
     function WatchAll(obj){
-        this.obj = obj;
+        /*this.obj = obj;
         let objForArray = this.obj;
         let arrayForObj = [];
         
@@ -31,7 +31,11 @@
         
         this.name = arrayForObj[0];
         this.lastName = arrayForObj[1];
-        this.age = arrayForObj[2];
+        this.age = arrayForObj[2];*/
+        
+        this.name = obj.name;
+        this.lastName = obj.lastName;
+        this.age = obj.age;
     };
 
     WatchAll.prototype.setName = function(name){
