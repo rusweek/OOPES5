@@ -10,6 +10,55 @@
     
 </body>
 <script>
+    let man1 = {
+        name: 'Joen',
+        lastName: 'McCain',
+        age: 26
+    };
 
+    let man2 = {
+        name: 'Lindy',
+        lastName: 'Smith',
+        age: 31
+    };
+
+    class  WatchAll{
+        constructor (obj){
+        this.obj = obj;
+        let objForArray = this.obj;
+        let arrayForObj = [];
+        
+        Object.keys(objForArray).forEach(key => arrayForObj.push(objForArray[key]));
+        
+        this.name = arrayForObj[0];
+        this.lastName = arrayForObj[1];
+        this.age = arrayForObj[2];
+        };
+        
+        setName(name){
+            this.name = name;
+        };
+
+        setLastName(lastName){
+            this.lastName = lastName;
+        };
+
+        setAge(age){
+            this.age = age;
+        }
+        getAllInfo(){
+            
+            let AllInfo = `Имя ${this.name} Фамилия ${this.lastName} Возрвст ${this.age}`;
+            return AllInfo;
+        }
+
+    };
+
+    let man1FI = new WatchAll(man1);
+
+    console.log(man1FI.getAllInfo())
+
+   
+    
 </script>
 </html>
