@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dz</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    function Calc(num){
+        this.num = num;
+
+    };
+
+    Calc.prototype.sum = function(args){
+        let summ = 0;
+        let length = arguments.length;
+        for(let i = 0; i<length; i++){
+            console.log(arguments[i])
+            summ +=arguments[i];
+        };
+        return summ + this.num;
+    };
+
+    Calc.prototype.dif = function(args){
+        let diff = 0;
+        let length = arguments.length;
+        for (let i = 0; i < length; i++) {
+            diff +=arguments[i];
+            
+        };
+        return this.num - diff;
+    };
+
+    Calc.prototype.div = function(args){
+        let length = arguments.length;
+        
+        for (let i = 0; i < length; i++) {
+           this.num = this.num/arguments[i];
+            
+        }
+        return this.num;
+    };
+
+    Calc.prototype.mul = function(args){
+        let length = arguments.length;
+
+        for (let i = 0; i < length; i++) {
+            
+            this.num = this.num * arguments[i];
+            
+        };
+        return this.num;
+    };
+    
+    let s = new Calc(100);
+    //console.log(s.sum(1,2,3));
+    //console.log(s.dif(10,30));
+    //console.log(s.div(10,2));
+    console.log(s.mul(2,2));
+
+</script>
+</html>
