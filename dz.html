@@ -12,35 +12,39 @@
 
 <script>
     function Calc(num){
-        this.num = num;
-
+        this.thoseSum = num;
+        this.thoseDif = num;
+        this.thoseDiv = num;
+        this.thoseMul = num;
     };
 
     Calc.prototype.sum = function(){
         let length = arguments.length;
         for(let i = 0; i<length; i++){
-            this.num +=arguments[i];
+            this.thoseSum +=arguments[i];
         };
-        return  this.num;
+        return  this.thoseSum;
     };
 
     Calc.prototype.dif = function(){
+        
         let length = arguments.length;
         for (let i = 0; i < length; i++) {
-            this.num -=arguments[i];
+            this.thoseDif -=arguments[i];
+            
             
         };
-        return this.num - diff;
+        return this.thoseDif;
     };
 
     Calc.prototype.div = function(){
         let length = arguments.length;
         
         for (let i = 0; i < length; i++) {
-           this.num /= arguments[i];
+           this.thoseDiv /= arguments[i];
             
         }
-        return this.num;
+        return this.thoseDiv;
     };
 
     Calc.prototype.mul = function(){
@@ -48,10 +52,10 @@
 
         for (let i = 0; i < length; i++) {
             
-            this.num *=  arguments[i];
+            this.thoseMul *=  arguments[i];
             
         };
-        return this.num;
+        return this.thoseMul;
     };
     
     //let s = new Calc(100);
@@ -78,14 +82,20 @@
 
     SqlCalc.prototype.sum = function(){
         Calc.prototype.sum.apply(this, arguments);//оказывается надо использовать apply
-        return this.num*this.num;
+        return this.thoseSum*this.thoseSum;
+    };
+
+    SqlCalc.prototype.dif = function(){
+        Calc.prototype.dif.apply(this, arguments);//оказывается надо использовать apply
+        return this.thoseDif*this.thoseDif;
     };
 
 
 
     let s2  = new SqlCalc(100);
-    let v = s2.sum(1,2,3);
-    console.log(v);
+    
+    console.log(s2.sum(1,2,3));
+    console.log(s2.dif(10,20));
 
 </script>
 </html>
