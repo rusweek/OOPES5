@@ -71,14 +71,14 @@
     inherit(SqlCalc, Calc);
     
     function SqlCalc(num){
-        Calc.apply(this, arguments);
+        Calc.apply(this, arguments); //оказывается надо использовать apply, кто бы знал.
     };
 
    
 
     SqlCalc.prototype.sum = function(){
-        return Calc.prototype.sum.apply(this, arguments);
-        
+        Calc.prototype.sum.apply(this, arguments);//оказывается надо использовать apply
+        return this.num*this.num;
     };
 
 
