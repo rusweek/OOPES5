@@ -90,12 +90,24 @@
         return this.thoseDif*this.thoseDif;
     };
 
+    SqlCalc.prototype.div = function(){
+        Calc.prototype.div.apply(this, arguments);//оказывается надо использовать apply
+        return this.thoseDiv*this.thoseDiv;
+    };
+
+    SqlCalc.prototype.mul = function(){
+        Calc.prototype.mul.apply(this, arguments);//оказывается надо использовать apply
+        return this.thoseMul*this.thoseMul;
+    };
+
 
 
     let s2  = new SqlCalc(100);
     
     console.log(s2.sum(1,2,3));
     console.log(s2.dif(10,20));
+    console.log(s2.div(2,2));
+    console.log(s2.mul(2,2));
 
 </script>
 </html>
